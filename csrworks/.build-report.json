@@ -1,0 +1,29 @@
+{
+  "site": "csrworks",
+  "time": "2026-09-19T07:34:29.614Z",
+  "preview": true,
+  "pages": [
+    "index.html",
+    "business/index.html",
+    "company/index.html",
+    "contact/index.html"
+  ],
+  "placeholders": {
+    "index.html": [
+      "CSRWORKS_TRACK_RECORD"
+    ],
+    "business/index.html": [
+      "GEOTHERMAL_FIT_CRITERIA",
+      "CARBON_CREDIT_SCHEME"
+    ],
+    "company/index.html": [
+      "CSRWORKS_HISTORY",
+      "CSRWORKS_ORG"
+    ],
+    "contact/index.html": [
+      "CONTACT_HOURS"
+    ]
+  },
+  "placeholderCount": 6,
+  "memosStripped": false
+}

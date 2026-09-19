@@ -1,0 +1,75 @@
+{
+  "site": "jeju",
+  "time": "2026-09-19T07:34:29.630Z",
+  "preview": true,
+  "pages": [
+    "index.html",
+    "shop/index.html",
+    "shop/jeju/index.html",
+    "shop/memorial/index.html",
+    "memorial/index.html",
+    "memorial/consult/index.html",
+    "product/jj-01/index.html",
+    "product/jj-02/index.html",
+    "product/jj-03/index.html",
+    "product/jj-04/index.html",
+    "product/jj-05/index.html",
+    "product/jj-06/index.html",
+    "product/mm-01/index.html",
+    "product/mm-02/index.html",
+    "product/mm-03/index.html",
+    "cart/index.html",
+    "jeju18/index.html",
+    "company/index.html"
+  ],
+  "placeholders": {
+    "memorial/consult/index.html": [
+      "JEJU_PRIVACY_CONSENT"
+    ],
+    "product/jj-01/index.html": [
+      "JEJU_SHIPPING_POLICY",
+      "JEJU_RETURN_POLICY"
+    ],
+    "product/jj-02/index.html": [
+      "JEJU_SHIPPING_POLICY",
+      "JEJU_RETURN_POLICY"
+    ],
+    "product/jj-03/index.html": [
+      "JEJU_SHIPPING_POLICY",
+      "JEJU_RETURN_POLICY"
+    ],
+    "product/jj-04/index.html": [
+      "JEJU_SHIPPING_POLICY",
+      "JEJU_RETURN_POLICY"
+    ],
+    "product/jj-05/index.html": [
+      "JEJU_SHIPPING_POLICY",
+      "JEJU_RETURN_POLICY"
+    ],
+    "product/jj-06/index.html": [
+      "JEJU_SHIPPING_POLICY",
+      "JEJU_RETURN_POLICY"
+    ],
+    "product/mm-01/index.html": [
+      "MM01_TEXT_LIMIT",
+      "MM01_LEAD_TIME"
+    ],
+    "product/mm-02/index.html": [
+      "MM02_SOURCE_AMOUNT",
+      "MM02_SIZE_COLOR",
+      "MM02_CERT",
+      "MM02_LEAD_TIME"
+    ],
+    "product/mm-03/index.html": [
+      "MM03_MATERIAL",
+      "MM03_SIZE",
+      "MM03_LEAD_TIME"
+    ],
+    "company/index.html": [
+      "JEJU_ECOMMERCE_REG",
+      "JEJU_PRIVACY_OFFICER"
+    ]
+  },
+  "placeholderCount": 24,
+  "memosStripped": false
+}

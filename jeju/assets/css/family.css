@@ -1,0 +1,388 @@
+/* family.css — 패밀리 사이트 추가분
+ *
+ * stage.css(통합 사이트 정본) 다음에 로드된다. 토큰은 새로 만들지 않고 전부 --cs-* 를 쓴다.
+ * 액센트는 --cs-pine 하나뿐이라는 원칙을 여기서도 지킨다.
+ * 모바일 우선(§5-2-6): 기본 = 390 기준, 확장은 min-width 로만.
+ */
+
+/* 1. 패밀리 리본 — 역방향 동선 -------------------------------------------- */
+/* 통합 사이트 푸터의 패밀리 바가 이쪽으로 보낸다. 이 리본이 되돌려보낸다.
+   먹색 바탕이라 paper 헤더 위에 얹힌 「상위 소속」으로 읽힌다. */
+
+.fam-ribbon{
+  background:var(--cs-ink);
+  color:var(--cs-on-media-soft);
+  font-size:var(--cs-text-xs);
+}
+/* 한 줄로 고정한다. 모바일에서 형제 목록까지 담으면 3줄 100px 이 되어
+   첫 화면의 12% 를 소속 표시가 먹는다(09-06 390 실측) — 목록은 ≥768 에서만 편다. */
+.fam-ribbon__inner{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:0 var(--cs-page-x);
+  min-height:44px;
+}
+.fam-ribbon__label{
+  display:inline-flex;align-items:center;gap:7px;margin:0;flex:none;
+  font-weight:600;color:var(--cs-on-media-soft);
+}
+.fam-ribbon a{
+  display:inline-flex;align-items:center;min-height:var(--cs-hit);
+  color:var(--cs-on-media-soft);text-decoration:none;
+}
+.fam-ribbon__home{font-weight:600;flex:none;white-space:nowrap}
+.fam-ribbon a:focus-visible{
+  outline:var(--cs-focus-w) solid var(--cs-pine-media);
+  outline-offset:var(--cs-focus-offset);border-radius:4px;
+}
+@media (hover:hover){ .fam-ribbon a:hover{color:var(--cs-on-media);text-decoration:underline} }
+.fam-ribbon a:active{color:var(--cs-on-media);text-decoration:underline}
+
+.fam-ribbon__mark{
+  width:7px;height:7px;border-radius:var(--cs-radius-pill);
+  background:var(--cs-pine-media);flex:none;
+}
+/* 형제 목록은 좁은 폭에서 숨긴다 — 푸터 패밀리 바가 같은 목록을 담고 있다 */
+.fam-ribbon__list{
+  display:none;flex-wrap:nowrap;align-items:center;gap:0 14px;
+  list-style:none;margin:0;padding:0;min-width:0;
+}
+.fam-ribbon__list li{margin:0}
+/* 형제 사이트 사이 구분점 — 리스트 마커가 아니라 장식이므로 aria 에 안 걸린다 */
+.fam-ribbon__list li + li{position:relative;padding-left:14px}
+.fam-ribbon__list li + li::before{
+  content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:3px;height:3px;border-radius:var(--cs-radius-pill);
+  background:var(--cs-on-media-soft);opacity:.45;
+}
+
+/* 2. 문서형 헤더 조정 ------------------------------------------------------ */
+/* 통합 사이트 헤더는 무대 위에 떠 있는 둥근 바다. 패밀리 사이트는 리본 바로 아래에
+   붙으므로 위쪽 라운드를 펴고, 스티키 기준도 리본을 지나 0 으로 둔다. */
+
+.site-header--doc{
+  border-top-left-radius:0;border-top-right-radius:0;
+}
+.site-header--doc .site-header__descriptor{
+  display:none;
+}
+
+/* 3. 시안 고지 ------------------------------------------------------------- */
+/* 🔴 제안용 시안임을 숨기지 않는다. 실주문·실결제가 되는 화면으로 오해하면
+   그 오해는 우리 책임이 된다. */
+
+.demo-notice{
+  display:flex;align-items:flex-start;gap:10px;
+  margin:0 0 24px;padding:14px 16px;
+  background:var(--cs-pine-tint);
+  border:1px solid var(--cs-pine);
+  border-radius:var(--cs-radius-card);
+  font-size:var(--cs-text-sm);line-height:1.55;color:var(--cs-ink);
+}
+.demo-notice strong{font-weight:700;white-space:nowrap}
+.demo-notice p{margin:0}
+
+/* 2-0. 쇼핑 지면 폭 -------------------------------------------------------- */
+/* 통합 사이트의 문서 폭(760)은 읽는 지면 기준이다. 상품 목록·상세는 그 안에 가두면
+   PC 에서 답답해진다 — 쇼핑 성격 지면만 넓힌다. 회사소개·18선 안내는 760 유지. */
+body.is-shop .page-main__inner{max-width:1140px}
+
+/* 2-1. 문서 지면 리듬 ------------------------------------------------------ */
+/* stage.css 리셋이 `h1,h2,h3,p,ul{margin:0}`(특이도 0,0,1)로 걷어내고,
+   복원 규칙은 `:where()`(특이도 0)이라 리셋에 진다. 통합 사이트는 `.doc > * + *` 로
+   형제 간격을 줘서 이 문제를 피한다 — 같은 방식으로 리듬을 세운다.
+   (09-06 실측: 375 에서 h2↔본문 0px · 문단 사이 0px) */
+.page-main__inner > section > * + *{margin-top:16px}
+.page-main__inner > section > h2 + *{margin-top:12px}
+.page-main__inner > section > h3{margin-top:28px}
+.page-main__inner > section > :is(ul,ol):not([class]) > li + li{margin-top:8px}
+.media-card__body > * + *{margin-top:8px}
+.product > div > * + *{margin-top:12px}
+
+/* 3-1. 손가락으로 누르는 링크 ---------------------------------------------- */
+/* 문장 속 인라인 링크는 WCAG 의 인라인 예외에 들지만, 아래 넷은 「읽다가 눌리는 글자」가
+   아니라 그 자리의 동선 자체다. 사내 기준대로 44 를 준다 (09-06 390 실측에서 16~36px 로 잡힘). */
+.media-card__body > p:last-child > a,
+.page-main__inner > section > p > a:only-child,
+nav[aria-label="현재 위치"] a,
+.page-main__inner a[href^="tel:"]{
+  display:inline-flex;align-items:center;min-height:var(--cs-hit);
+  font-weight:600;
+}
+
+/* 3-2. 자료 대기 자리 ------------------------------------------------------ */
+/* 고객이 채울 자리. 「비어 있다」가 아니라 「받는 대로 채운다」로 읽히게 둔다. */
+.ph{
+  display:inline-block;padding:2px 10px;
+  border:1px dashed var(--cs-hair);border-radius:var(--cs-radius-pill);
+  background:var(--cs-paper-deep);
+  font:600 var(--cs-text-sm)/1.6 var(--cs-font);color:var(--cs-ink-soft);
+  overflow-wrap:anywhere;
+}
+
+/* 3-3. 검토 메모 -------------------------------------------------------- */
+/* 고객에게 확인받을 사항. 본문과 확실히 구분되게 점선으로 띄운다.
+   발행 빌드(--publish)가 이 블록을 통째로 걷어낸다. */
+.memo{
+  margin:24px 0;padding:12px 14px;
+  border:1px dashed var(--cs-x-field-border);border-radius:var(--cs-radius-btn);
+  background:transparent;
+  font-size:var(--cs-text-sm);line-height:1.6;color:var(--cs-ink-soft);
+}
+.memo p{margin:0}
+.memo strong{
+  display:inline-block;margin-right:6px;padding:1px 7px;border-radius:var(--cs-radius-pill);
+  background:var(--cs-ink);color:var(--cs-on-media);
+  font-size:var(--cs-text-xs);font-weight:700;
+}
+
+/* 3-4. 무드 배너 ---------------------------------------------------------- */
+/* 히어로 문장 아래에 까는 분위기 이미지. 글자를 얹지 않으므로 대비 문제가 없고,
+   내용을 전달하지 않으므로 alt 는 비운다(장식 이미지).
+   🔴 상품 사진 자리에는 쓰지 않는다 — 생성 이미지를 실물 상품으로 오해하면 표시광고 문제가 된다. */
+.mood{
+  margin:0;aspect-ratio:16/9;overflow:hidden;
+  border-radius:var(--cs-radius-card);
+  background:var(--cs-paper-deep);
+}
+.mood img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* 4. 지표 스트립 ----------------------------------------------------------- */
+
+.figures{
+  display:grid;grid-template-columns:1fr;gap:12px;
+  list-style:none;padding:0;margin:0;
+}
+.figures li{margin:0}
+.figure{
+  padding:18px 16px;background:var(--cs-paper-deep);
+  border-radius:var(--cs-radius-card);
+}
+.figure__value{
+  display:block;font:800 var(--cs-text-xl)/1.15 var(--cs-font);
+  letter-spacing:-0.01em;color:var(--cs-pine-deep);
+}
+.figure__label{display:block;margin-top:6px;font-size:var(--cs-text-sm);color:var(--cs-ink-soft)}
+
+/* 5. 절차 스텝 ------------------------------------------------------------- */
+
+.steps{list-style:none;padding:0;margin:0;counter-reset:step}
+.steps li{
+  position:relative;margin:0;padding:0 0 20px 42px;counter-increment:step;
+}
+.steps li::before{
+  content:counter(step);
+  position:absolute;left:0;top:0;
+  width:28px;height:28px;border-radius:var(--cs-radius-pill);
+  display:grid;place-items:center;
+  background:var(--cs-pine);color:var(--cs-on-media);
+  font:700 var(--cs-text-sm)/1 var(--cs-font);
+}
+/* 마지막 항목의 세로선은 그리지 않는다 */
+.steps li:not(:last-child)::after{
+  content:"";position:absolute;left:13.5px;top:32px;bottom:4px;
+  width:1px;background:var(--cs-hair);
+}
+.steps li:last-child{padding-bottom:0}
+.steps__title{display:block;font-weight:700;color:var(--cs-ink);margin-bottom:4px}
+.steps__body{display:block;font-size:var(--cs-text-sm);line-height:1.6;color:var(--cs-ink-soft)}
+
+/* 6. 상품 그리드 ----------------------------------------------------------- */
+
+.shop-toolbar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  margin:0 0 20px;
+}
+.shop-toolbar__count{font-size:var(--cs-text-sm);color:var(--cs-ink-soft);margin:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.chips li{margin:0}
+.chip{
+  display:inline-flex;align-items:center;min-height:var(--cs-hit);padding:0 16px;
+  border:1px solid var(--cs-hair);border-radius:var(--cs-radius-pill);
+  background:var(--cs-paper);color:var(--cs-ink-soft);
+  font:600 var(--cs-text-sm)/1 var(--cs-font);text-decoration:none;
+}
+@media (hover:hover){ .chip:hover{border-color:var(--cs-pine);color:var(--cs-pine-deep)} }
+.chip[aria-current="true"]{background:var(--cs-pine);border-color:var(--cs-pine);color:var(--cs-on-media)}
+
+.shop-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;
+  list-style:none;padding:0;margin:0;
+}
+.shop-grid li{margin:0}
+
+.product-card{
+  display:flex;flex-direction:column;height:100%;
+  background:var(--cs-paper);border:1px solid var(--cs-hair);
+  border-radius:var(--cs-radius-card);overflow:hidden;
+  text-decoration:none;color:inherit;
+  transition:box-shadow var(--cs-t-fast) var(--cs-ease-out),transform var(--cs-t-fast) var(--cs-ease-out);
+}
+@media (hover:hover){
+  .product-card:hover{box-shadow:var(--cs-shadow-hover);transform:translateY(-2px)}
+}
+.product-card:focus-visible{
+  outline:var(--cs-focus-w) solid var(--cs-pine);outline-offset:var(--cs-focus-offset);
+}
+.product-card__thumb{
+  aspect-ratio:1/1;width:100%;background:var(--cs-paper-deep);
+  display:grid;place-items:center;position:relative;
+}
+.product-card__thumb img{width:100%;height:100%;object-fit:cover;display:block}
+/* 사진이 아직 없는 자리 — 빈 회색 상자로 두면 「깨진 것」으로 읽힌다 */
+.product-card__ph{
+  font:600 var(--cs-text-xs)/1.4 var(--cs-font);color:var(--cs-ink-soft);
+  text-align:center;padding:0 12px;opacity:.75;
+}
+.product-card__body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.product-card__cat{font-size:var(--cs-text-xs);color:var(--cs-ink-soft)}
+.product-card__name{font:700 var(--cs-text-md)/1.35 var(--cs-font);color:var(--cs-ink);margin:0;word-break:keep-all}
+.product-card__price{margin-top:auto;font:700 var(--cs-text-md)/1.2 var(--cs-font);color:var(--cs-ink)}
+
+.badge{
+  display:inline-flex;align-items:center;padding:3px 8px;border-radius:var(--cs-radius-pill);
+  font:700 var(--cs-text-xs)/1.3 var(--cs-font);
+}
+.badge--sample{
+  position:absolute;top:8px;left:8px;
+  background:var(--cs-ink);color:var(--cs-on-media);
+}
+.badge--new{background:var(--cs-pine-tint);color:var(--cs-pine-deep)}
+
+/* 7. 상품 상세 ------------------------------------------------------------- */
+
+.product{display:grid;grid-template-columns:1fr;gap:20px}
+.product__media{
+  aspect-ratio:1/1;background:var(--cs-paper-deep);
+  border-radius:var(--cs-radius-card);display:grid;place-items:center;
+  position:relative;overflow:hidden;
+}
+.product__media img{width:100%;height:100%;object-fit:cover}
+.product__cat{font-size:var(--cs-text-sm);color:var(--cs-ink-soft);margin:0 0 6px}
+.product__name{font:800 var(--cs-h2)/1.25 var(--cs-font);letter-spacing:-0.01em;margin:0 0 12px;word-break:keep-all}
+.product__price{font:800 var(--cs-text-xl)/1.2 var(--cs-font);color:var(--cs-ink);margin:0 0 4px}
+.product__price-note{font-size:var(--cs-text-xs);color:var(--cs-ink-soft);margin:0 0 20px}
+.product__buy{display:flex;flex-direction:column;gap:10px;margin:20px 0 0}
+.product__buy .btn{width:100%}
+
+.spec{width:100%;font-size:var(--cs-text-sm)}
+.spec th{width:34%;white-space:nowrap;color:var(--cs-ink-soft);font-weight:600}
+
+/* 8. 장바구니 ------------------------------------------------------------- */
+
+.cart-line{
+  display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:start;
+  padding:16px 0;border-bottom:1px solid var(--cs-hair);
+}
+.cart-line__thumb{
+  width:64px;aspect-ratio:1/1;border-radius:var(--cs-radius-btn);
+  background:var(--cs-paper-deep);overflow:hidden;display:grid;place-items:center;
+}
+.cart-line__thumb img{width:100%;height:100%;object-fit:cover}
+.cart-line__name{font-weight:700;margin:0 0 4px;word-break:keep-all}
+.cart-line__meta{font-size:var(--cs-text-sm);color:var(--cs-ink-soft);margin:0}
+.cart-line__foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--cs-x-field-border);border-radius:var(--cs-radius-btn);overflow:hidden}
+.qty button{
+  width:var(--cs-hit);height:40px;border:0;background:var(--cs-paper);color:var(--cs-ink);
+  font:700 var(--cs-text-md)/1 var(--cs-font);cursor:pointer;
+}
+.qty button:focus-visible{outline:var(--cs-focus-w) solid var(--cs-pine);outline-offset:-2px}
+.qty__value{min-width:40px;text-align:center;font-weight:700;font-size:var(--cs-text-sm)}
+.cart-remove{
+  background:none;border:0;padding:0 4px;min-height:var(--cs-hit);
+  color:var(--cs-ink-soft);font-size:var(--cs-text-sm);text-decoration:underline;cursor:pointer;
+}
+.cart-total{
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  padding:20px 0 0;font:800 var(--cs-text-lg)/1.2 var(--cs-font);
+}
+.cart-empty{padding:48px 0;text-align:center;color:var(--cs-ink-soft)}
+
+/* 9. 확장 (min-width 전용) -------------------------------------------------- */
+
+@media (min-width:768px){
+  /* 폭이 생기면 형제 목록을 편다 — 한 줄 안에서만 */
+  .fam-ribbon__list{display:flex}
+  .figures{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .shop-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+  .product{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+  .product__buy{flex-direction:row}
+  .product__buy .btn{width:auto;flex:1}
+  .cart-line{grid-template-columns:88px 1fr auto;align-items:center}
+  .cart-line__thumb{width:88px}
+  .cart-line__foot{margin-top:0}
+}
+
+@media (min-width:1200px){
+  .shop-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .site-header--doc .site-header__descriptor{display:block}
+}
+
+/* 10. 기념·추모 라인 (v2 2026-09-16) ------------------------------------------ */
+/* 정본 = ai-world projects/csrworks-online/jeju-memorial-line-spec.md §4~5.
+   한 몰 두 밀도: 특산 지면은 그대로, 기념 지면만 여백·글자를 키운다. 색은 여전히 pine 하나. */
+:root{--jj-section:64px}
+@media (min-width:768px){:root{--jj-section:96px}}
+
+body.is-memorial .page-main__inner{max-width:1140px}
+body.is-memorial .page-main__inner > * + *{margin-top:var(--jj-section)}
+body.is-memorial .page-main__inner > section > p,
+body.is-memorial .accordion__item > :not(summary){font-size:18px;line-height:1.6}
+body.is-memorial .steps__body{font-size:15px}
+body.is-memorial .product__price-note,body.is-memorial .product__cat{font-size:15px}
+
+/* 밴드 — 페이지당 둘(첫·끝). 밴드 안 1차 버튼은 종이색 채움, 2차는 인셋 보더(Eterneva 반전) */
+.band{
+  background:var(--cs-pine-deep);color:var(--cs-on-media);
+  border-radius:var(--cs-radius-card);padding:40px 20px;
+}
+.band__title{
+  font:800 clamp(1.75rem,5vw,4rem)/1.1 var(--cs-font);letter-spacing:-0.01em;
+  color:var(--cs-on-media);margin:0;word-break:keep-all;
+}
+.band__title--sm{font-size:clamp(1.375rem,3.2vw,2.25rem)}
+.band__lead{margin:16px 0 0;max-width:34em;font-size:18px;line-height:1.6;color:var(--cs-on-media-soft)}
+.band__cta{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.band__cta .btn{width:100%;min-height:48px}
+.btn--paper{background:var(--cs-paper);color:var(--cs-ink);border-color:var(--cs-paper)}
+.btn--paper-outline{background:transparent;color:var(--cs-on-media);box-shadow:inset 0 0 0 1.5px var(--cs-on-media-soft)}
+@media (hover:hover){
+  .btn--paper:hover{background:var(--cs-paper-deep);color:var(--cs-ink)}
+  .btn--paper-outline:hover{box-shadow:inset 0 0 0 1.5px var(--cs-on-media);color:var(--cs-on-media)}
+}
+.band .btn:focus-visible{outline:var(--cs-focus-w) solid var(--cs-on-media);outline-offset:var(--cs-focus-offset)}
+.band--cta{padding:32px 20px}
+
+/* 3분기 — 동일 폭 아웃라인 버튼 */
+.branches{display:grid;grid-template-columns:1fr;gap:10px;list-style:none;padding:0;margin:0}
+.branches li{margin:0}
+.branch{
+  display:flex;flex-direction:column;justify-content:center;min-height:52px;
+  padding:14px 16px;border:1.5px solid var(--cs-ink);border-radius:var(--cs-radius-btn);
+  color:var(--cs-ink);text-decoration:none;font:700 var(--cs-text-md)/1.35 var(--cs-font);
+  transition:transform var(--cs-t-fast) var(--cs-ease-out),background var(--cs-t-fast) var(--cs-ease-out);
+}
+.branch small{display:block;margin-top:3px;font:500 var(--cs-text-sm)/1.4 var(--cs-font);color:var(--cs-ink-soft)}
+@media (hover:hover){ .branch:hover{background:var(--cs-paper-deep);transform:translateY(-2px)} }
+.branch:focus-visible{outline:var(--cs-focus-w) solid var(--cs-pine);outline-offset:var(--cs-focus-offset)}
+
+/* 상담형 가격 자리 */
+.product-card__price--consult,.product__price--consult{color:var(--cs-pine-deep)}
+
+/* 상담 폼 — stage.css .form-card/.join-form/.field 재사용. 라디오·체크는 44 타깃 */
+.join-form .field__group{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.join-form .check{display:flex;align-items:center;gap:10px;min-height:var(--cs-hit);font-size:var(--cs-text-md)}
+.join-form .check input{width:20px;height:20px;margin:0;accent-color:var(--cs-pine)}
+.join-form .consent{display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid var(--cs-hair)}
+.join-form .consent .field__hint{margin:0}
+.join-form button[type="submit"]{width:100%;min-height:52px}
+.field--hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+@media (min-width:768px){
+  .band{padding:56px 48px}
+  .band__cta{flex-direction:row}
+  .band__cta .btn{width:auto;min-width:200px}
+  .branches{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .join-form button[type="submit"]{width:auto;min-width:220px}
+}
