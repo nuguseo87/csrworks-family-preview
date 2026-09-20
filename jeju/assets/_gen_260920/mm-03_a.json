@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-09-20T04:06:29.204608Z",
+    "display_name": "Nano Banana Pro",
+    "id": "3a0336ed-0562-401c-9c92-f1072a60f93c",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Gwhy3vebTcWNJM46bBcaXVkPWW/hf_20260920_040629_3a0336ed-0562-401c-9c92-f1072a60f93c_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "4:3",
+      "batch_size": 1,
+      "height": 1792,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Product photograph of a closed keepsake box of solid walnut with a fine brass hinge and a plain lid, no markings, sitting on a pale linen runner in a quiet Korean living room. A folded soft cloth beside it. Warm indirect light from a window, restrained and furniture-like, looks at home on a shelf. Muted neutral palette. Shallow depth of field, 50mm, slightly above eye level, generous negative space. Negative: text, letters, hangul, characters, writing, nameplate, engraving, watermark, logo, urn, funeral imagery, flowers on top, people, hands.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2400
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Gwhy3vebTcWNJM46bBcaXVkPWW/hf_20260920_040629_3a0336ed-0562-401c-9c92-f1072a60f93c.png",
+    "status": "completed"
+  }
+]

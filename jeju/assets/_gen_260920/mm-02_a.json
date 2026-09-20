@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-09-20T04:06:27.083783Z",
+    "display_name": "Nano Banana Pro",
+    "id": "7f3aa304-dc8f-4edc-a34d-58748f691ca4",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Gwhy3vebTcWNJM46bBcaXVkPWW/hf_20260920_040627_7f3aa304-dc8f-4edc-a34d-58748f691ca4_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "4:3",
+      "batch_size": 1,
+      "height": 1792,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Product photograph of a single small polished gemstone, deep translucent blue-grey, resting in a fitted cream suede presentation case lined with silk, the lid open behind it. Placed on a pale oak table with soft morning light. The stone catches a quiet highlight. Calm, respectful, keepsake mood, muted neutral palette. Shallow depth of field, 100mm macro, centered, generous negative space. Negative: text, letters, hangul, characters, writing, certificate paper, watermark, logo, jewelry store display, price tag, people, hands.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2400
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Gwhy3vebTcWNJM46bBcaXVkPWW/hf_20260920_040627_7f3aa304-dc8f-4edc-a34d-58748f691ca4.png",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-09-20T04:06:26.133306Z",
+    "display_name": "Nano Banana Pro",
+    "id": "623ef509-4b7d-4a19-80fd-18d1b9dc197a",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Gwhy3vebTcWNJM46bBcaXVkPWW/hf_20260920_040626_623ef509-4b7d-4a19-80fd-18d1b9dc197a_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "4:3",
+      "batch_size": 1,
+      "height": 1792,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Product photograph of a clear optical crystal memorial block standing upright on a slim walnut base, placed on a pale linen surface beside a small dried flower. Inside the crystal an abstract laser-etched pattern of soft light and faint mist, like a frosted cloud — absolutely no letters, no characters, no portrait, no faces. Soft north-facing window light from the left, gentle shadow to the right, calm and dignified Korean home interior, muted warm neutral palette. Shallow depth of field, 85mm, centered, generous negative space. Negative: text, letters, hangul, characters, writing, engraving of words, watermark, logo, face, portrait, people, clutter.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2400
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Gwhy3vebTcWNJM46bBcaXVkPWW/hf_20260920_040626_623ef509-4b7d-4a19-80fd-18d1b9dc197a.png",
+    "status": "completed"
+  }
+]
